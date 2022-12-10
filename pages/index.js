@@ -68,9 +68,10 @@ export default function Home() {
               <Grid xs={12} justify="center">
                 <Button type="submit">Calcular</Button>
               </Grid>
-              <br></br>
               <Grid xs={12} justify="center">
-                <Text h3>Su Ganancia total es : {profit}</Text>
+                <Text h6 className={styles.subtitle}>
+                  Su Ganancia total es : {profit} ARS
+                </Text>
               </Grid>
             </Card>
           </Grid.Container>
