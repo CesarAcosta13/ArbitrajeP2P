@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { Input, Button, Text, Grid } from "@nextui-org/react";
 import { useState } from "react";
-import { Spacer } from "@nextui-org/react";
 
 export default function Home() {
   const [state, setState] = useState({
