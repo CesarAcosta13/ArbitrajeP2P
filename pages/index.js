@@ -1,64 +1,80 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { Input, Button, Text, Grid } from "@nextui-org/react";
+import { useState } from "react";
+import { Spacer } from "@nextui-org/react";
 
 export default function Home() {
+  const [state, setState] = useState({
+    capital: 0,
+    priceBuy: 0,
+    priceSell: 0,
+  });
+  const [profit, setProfit] = useState(0);
+
+  const onChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("submit values");
+    let purchased_amount = state.capital / state.priceBuy;
+    let diff = purchased_amount * state.priceSell;
+    let profitTotal = (diff - state.capital).toFixed(2);
+    setProfit(profitTotal);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Arbitraje App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <Text h1>Arbitraje P2P</Text>
+        <form onSubmit={onSubmit} className={styles.form}>
+          <Grid.Container justify="center" gap={1} className={styles.card}>
+            <Grid xs={12}>
+              <Input
+                fullWidth
+                name="capital"
+                label="Capital Inicial"
+                placeholder="Ingrese el Capital Inicial"
+                onChange={onChange}
+              />
+            </Grid>
+            <Grid xs={6}>
+              <Input
+                fullWidth
+                name="priceBuy"
+                label="Precio de Compra"
+                placeholder="Ingrese el Precio de Compra"
+                onChange={onChange}
+              />
+            </Grid>
+            <Grid xs={6}>
+              <Input
+                fullWidth
+                name="priceSell"
+                label="Precio de Venta"
+                placeholder="Ingrese el precio de venta"
+                onChange={onChange}
+              />
+            </Grid>
+            <Grid style={styles.button}>
+              <Button type="submit">Calcular</Button>
+            </Grid>
+            <br></br>
+            <Grid xs={12} justify="center">
+              <Text h3>Su Ganancia total es : {profit}</Text>
+            </Grid>
+          </Grid.Container>
+        </form>
       </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
+      <footer>Powered by CA Company</footer>
 
       <style jsx>{`
         main {
@@ -69,6 +85,16 @@ export default function Home() {
           justify-content: center;
           align-items: center;
         }
+        /* card {
+          max-width: 5rem;
+        } */
+        button {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          //margin: 0 auto;
+        }
         footer {
           width: 100%;
           height: 100px;
@@ -76,6 +102,9 @@ export default function Home() {
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+        form {
+          width: 50%;
         }
         footer img {
           margin-left: 0.5rem;
@@ -111,5 +140,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
