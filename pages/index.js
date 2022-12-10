@@ -44,7 +44,7 @@ export default function Home() {
                 onChange={onChange}
               />
             </Grid>
-            <Grid xs={6}>
+            <Grid xs={12} md={6}>
               <Input
                 fullWidth
                 name="priceBuy"
@@ -53,7 +53,7 @@ export default function Home() {
                 onChange={onChange}
               />
             </Grid>
-            <Grid xs={6}>
+            <Grid xs={12} md={6}>
               <Input
                 fullWidth
                 name="priceSell"
