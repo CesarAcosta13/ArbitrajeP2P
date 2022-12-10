@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { Input, Button, Text, Grid } from "@nextui-org/react";
+import { Input, Button, Text, Grid, Card } from "@nextui-org/react";
 import { useState } from "react";
 
 export default function Home() {
@@ -32,43 +32,47 @@ export default function Home() {
       </Head>
 
       <main>
-        <Text h1>Arbitraje P2P</Text>
         <form onSubmit={onSubmit} className={styles.form}>
-          <Grid.Container justify="center" gap={1} className={styles.card}>
-            <Grid xs={12}>
-              <Input
-                fullWidth
-                name="capital"
-                label="Capital Inicial"
-                placeholder="Ingrese el Capital Inicial"
-                onChange={onChange}
-              />
-            </Grid>
-            <Grid xs={12} md={6}>
-              <Input
-                fullWidth
-                name="priceBuy"
-                label="Precio de Compra"
-                placeholder="Ingrese el Precio de Compra"
-                onChange={onChange}
-              />
-            </Grid>
-            <Grid xs={12} md={6}>
-              <Input
-                fullWidth
-                name="priceSell"
-                label="Precio de Venta"
-                placeholder="Ingrese el precio de venta"
-                onChange={onChange}
-              />
-            </Grid>
-            <Grid style={styles.button}>
-              <Button type="submit">Calcular</Button>
-            </Grid>
-            <br></br>
-            <Grid xs={12} justify="center">
-              <Text h3>Su Ganancia total es : {profit}</Text>
-            </Grid>
+          <Grid.Container gap={2} justify="center">
+            <Card css={{ p: "$10", minWidth: "600px" }}>
+              <Text h1 className={styles.title}>
+                Arbitraje P2P
+              </Text>
+              <Grid xs={12}>
+                <Input
+                  fullWidth
+                  name="capital"
+                  label="Capital Inicial"
+                  placeholder="Ingrese el Capital Inicial"
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid xs={12} md={12}>
+                <Input
+                  fullWidth
+                  name="priceBuy"
+                  label="Precio de Compra"
+                  placeholder="Ingrese el Precio de Compra"
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid xs={12} md={12}>
+                <Input
+                  fullWidth
+                  name="priceSell"
+                  label="Precio de Venta"
+                  placeholder="Ingrese el precio de venta"
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid xs={12} justify="center">
+                <Button type="submit">Calcular</Button>
+              </Grid>
+              <br></br>
+              <Grid xs={12} justify="center">
+                <Text h3>Su Ganancia total es : {profit}</Text>
+              </Grid>
+            </Card>
           </Grid.Container>
         </form>
       </main>
@@ -103,7 +107,7 @@ export default function Home() {
           align-items: center;
         }
         form {
-          width: 50%;
+          width: 100%;
         }
         footer img {
           margin-left: 0.5rem;
